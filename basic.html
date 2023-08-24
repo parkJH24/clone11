@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://unpkg.com/react@18/umd/react.development.js" crossorigin></script>
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js" crossorigin></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <!-- <script crossorigin src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script> -->
+    <script>
+        /*
+        리액트란?
+        -단순한 웹페이지가 아닌 어플리케이션, 유저의 행동에 따라 동적인 화면을 보여줘야 하고 동적으로 uo를 관리하기
+        위해서는 수많은 상태를 관리해야 한다. 그러나 기존의 자바나 제이쿼리로는 분명히 한계점이 존재한다.
+
+        수많은 dom, 상태값 업데이트값에 대한 관리를줄이고 오직 기능개발과 ui를 개발하기 위한 라이브러리가 나오게 되는데
+        리액트, 뷰, 앵글러이다.
+
+        앵글러
+        -구글에서 개발한 타입스크립트 개반 프론트앤트 웹애블리케이션 프레임워크
+        -모든 프레임워크중에 가장 난이도가 높음
+
+        뷰
+        -컴포넌트 기반 프론트앤드 프레임워크
+        명령가체가 쉽기 때문에 개발 과정에서 원하는 것을 정확하게 얻어낼 수 있고, 타 프레임워크에 비해서 코드가 간결하고
+        쉽고 빠르다.
+
+        리액트
+        -페이스북에서 개발하여 단윌 웹페이지나 모바일 앱에서 화며에 ㅍ쵸시되는 뷰부분에 개발에 사용되는 라이브러리
+        어떠한 라이브러리라도 리액트를 구성할 수 있다는 매력적인 장점이 있다.
+        html css와 같이 정형화되어 있는 구조가 아니기 때문에 사람마다 코드의 스타일이 달라지게 된다.
+
+        리액트를 배우는 이유?
+        현재 나온 프레임워크 중에서 가장 인기가 많음
+        그만큼 사용하는 기업이 많기 때문에 취업에 유리
+
+        라이브러리와 프레임워크의 차이점
+        -리액트는 전역상태관리와 같은 관리시스템은 제공하기 않기 때문에 다른 라이브러리를 추가로 연결해서 사용해야 한다.
+        ( redux, recoil등등) 사용자가 필요할때 가져다 쓰고 부분적으로 응용가능하다.
+
+        뷰는 자바스크립트 기반 프레임워크이기 때문에 부분적인 사용은 불가능 하며 제공하는 문법에 따라서 정확하게 작성을 해야 한다,.
+        그렇게 때문에 리액트에 비해서코드가 정형화 되어 있다.
+        에서 제공해주는 방법을 반드시 사용해야 한다. 뷰는 정해진 방법만 사용하기 때문에 
+        자유도가 낮지만 그만큼 코드 작성에 있어서 용이하기 때문에 리액트보다 접근성이 더 좋지 않을까란 생각이 든다.
+
+        설치하기 
+        cdn 방식도 가능하지만 속도가 느리기 때문에 설치하는 것이 좋음
+
+        node.js설치
+        yarn설치(npm이나 npx대체로 사용)
+        다운받은 후 cmd창에 npm install --global yarn 
+        yarn global add create-react-app로 yarn 전역사용 설정
+        react code snipper 확장프로그램 설치
+
+8888888888888888888888888888888888888
+        yarn 명령어
+        yarn start	리액트 프로젝트를 시작
+        yarn build	리액트 프로젝트를 빌드
+        이과정을 수행하면 작업한 리액트 파일들을 [build]라는 폴더에 빌드 시킴
+        하나의 html로 빌드되어 소스들과 함께 프로젝트 웹서버에 올려서 사용할 수 있게 함
+        yarn test	테스트 러너를 시작, 리액트 파일에 오류가 있는지 테스트
+        yarn eject	리액트 설정 파일을 추출
+        [ctrl] + [c]	yarn start로 실행한 리액트 프로젝트를 벗어남
+
+        88888888888888888888888888888888888888888
+
+        프로젝트 생성
+        create-react-app 프로젝트명 (프로젝트명은 대문자는 사용하지 않는다.)
+        cd 하위폴더명 (프로젝트명)
+        yarn start (yart을 설치 안했ㅇ르면 npm)
+        yarn build로 프로젝트 웹서버에 올리기
+
+        npm uninstall -g create-react-app (리액트 앱 제거)
+npm install -g create-react-app (리액트 앱 재설치)
+npx create-react-app [app-name] (리액트 앱 실행)
+        
+888888888888888888888
+        폴더구성
+        -[node_modules]
+        - Babel 및 Webpack을 통해 리액트를 실행시켜 주는 파일들을 모아놓은 폴더
+
+        [public] 
+        - Babel이 변환시켜 연결시킨 [index.html]을 저장하고 있는 폴더 
+        - [http://localhost:3000/]이 보여주는 html
+
+        [src]
+        - 리액트로 개발하는 대부분의 파일은 이 폴더에 저장됩니다.
+        - [index.js] : 리액트 진입 파일
+        - [App.js] : 컴포넌트 모음 파일
+88888888888888888888888888
+
+
+        
+
+
+
+        rcc	클래스 컴포넌트 생성
+rrc	클래스 컴포넌트와 react-redux 리덕스를 연결해서 생성
+rccp	클래스 컴포넌트와 prop type들을 클래스 뒤에 생성
+rcjc	import와 export없이 클래스컴포넌트 생성
+rcfc	클래스 컴포넌트와 모든 라이프사이클 메서드를 포함해서 생성
+rwwd	import없이 클래스 컴포넌트 생성
+rsc	화살표함수형 컴포넌트 생성
+rsf	함수형 컴포넌트를 생성
+rsc	화살표함수형에 props를 내려서 생성
+
+
+
+        
+        */
+
+
+        /*
+        ESLint = 유용한 리액트 확장프로그램
+        
+        
+        */
+    </script>
+
+
+
+</head>
+
+<body>
+    <div class="box">
+
+    </div>
+
+</body>
+
+</html>
